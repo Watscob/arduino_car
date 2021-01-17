@@ -12,6 +12,7 @@ class Car
   //Min value is 200 for work correctly (why ? I don't know)
   //Max value is 255
   void set_speed(uint8_t sp);
+  void set_speed_off(int8_t sp);
 
   //RELEASE, FORWARD, BACKWARD
   void set_direction(uint8_t dir);

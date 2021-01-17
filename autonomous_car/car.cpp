@@ -20,13 +20,23 @@ Car::~Car()
 
 void Car::set_speed(uint8_t sp)
 {
-  if (sp > 0 && sp < 153)
-    sp = 153;
   m_sp = sp;
   m_motor_back_l->setSpeed(m_sp);
   m_motor_back_r->setSpeed(m_sp);
   m_motor_front_l->setSpeed(m_sp);
   m_motor_front_r->setSpeed(m_sp);
+}
+
+void Car::set_speed_off(int8_t sp)
+{
+  if (m_sp + sp >= 0 && m_sp + sp <= 255)
+  {
+    m_sp += sp;
+    m_motor_back_l->setSpeed(m_sp);
+    m_motor_back_r->setSpeed(m_sp);
+    m_motor_front_l->setSpeed(m_sp);
+    m_motor_front_r->setSpeed(m_sp);
+  }
 }
 
 void Car::set_direction(uint8_t dir)
