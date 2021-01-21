@@ -52,18 +52,18 @@ void Car::turn_left()
 {
   m_motor_back_l->setSpeed(m_sp/3);
   m_motor_front_l->setSpeed(m_sp/3);
-  delay(500);
+  /*delay(100);
   m_motor_back_l->setSpeed(m_sp);
-  m_motor_front_l->setSpeed(m_sp);
+  m_motor_front_l->setSpeed(m_sp);*/
 }
 
 void Car::turn_right()
 {
   m_motor_back_r->setSpeed(m_sp/3);
   m_motor_front_r->setSpeed(m_sp/3);
-  delay(500);
+  /*delay(100);
   m_motor_back_r->setSpeed(m_sp);
-  m_motor_front_r->setSpeed(m_sp);
+  m_motor_front_r->setSpeed(m_sp);*/
 }
 
 void Car::rotate_left()
@@ -72,11 +72,11 @@ void Car::rotate_left()
   m_motor_front_l->run(BACKWARD);
   m_motor_back_r->run(FORWARD);
   m_motor_front_r->run(FORWARD);
-  delay(500);
+  /*delay(100);
   m_motor_back_r->run(m_dir);
   m_motor_front_r->run(m_dir);
   m_motor_back_l->run(m_dir);
-  m_motor_front_l->run(m_dir);
+  m_motor_front_l->run(m_dir);*/
 }
 
 void Car::rotate_right()
@@ -85,9 +85,9 @@ void Car::rotate_right()
   m_motor_front_r->run(BACKWARD);
   m_motor_back_l->run(FORWARD);
   m_motor_front_l->run(FORWARD);
-  delay(500);
+  /*delay(100);
   m_motor_back_r->run(m_dir);
   m_motor_front_r->run(m_dir);
   m_motor_back_l->run(m_dir);
-  m_motor_front_l->run(m_dir);
+  m_motor_front_l->run(m_dir);*/
 }

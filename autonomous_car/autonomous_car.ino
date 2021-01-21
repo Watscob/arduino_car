@@ -1,43 +1,10 @@
-/*#include "car.h"
-
-Car *car;
-
-void setup()
-{
-  car = new Car(0);
-  car->set_speed(200);
-  car->set_direction(RELEASE);
-}
-
-void loop()
-{
-  car->set_direction(FORWARD);
-  car->set_speed(153);
-  delay(1000);
-  car->set_speed(255);
-  delay(1000);
-  car->set_direction(RELEASE);
-  delay(1000);
-  car->set_direction(BACKWARD);
-  car->set_speed(153);
-  delay(1000);
-  car->set_speed(255);
-  delay(1000);
-  car->set_direction(RELEASE);
-  delay(1000);
-}*/
-
 #include "car.h"
 
 Car *car;
 
  
 void setup() 
-{
-    // communication with the host computer
-    Serial.begin(9600);   
- 
-    // communication with the BT module on serial1
+{ 
     Serial1.begin(9600);
 
     car = new Car(0);
@@ -74,9 +41,15 @@ void loop()
           car->set_direction(BACKWARD);
           break;
         case 'L':
-          car->rotate_left();
+          car->turn_left();
           break;
         case 'R':
+          car->turn_right();
+          break;
+        case 'l':
+          car->rotate_left();
+          break;
+        case 'r':
           car->rotate_right();
           break;
         default:
