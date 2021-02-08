@@ -18,6 +18,7 @@ class Car
   void set_direction(uint8_t dir);
   void turn_left();
   void turn_right();
+  void reset_turn();
   void rotate_left();
   void rotate_right();
   
