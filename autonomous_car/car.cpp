@@ -13,7 +13,7 @@ Car::Car(uint8_t sp, uint8_t min_speed, uint8_t max_speed)
   m_motor_back_r_ = new AF_DCMotor(2); 
   m_motor_front_r_ = new AF_DCMotor(3); 
   m_motor_front_l_ = new AF_DCMotor(4);
-  set_direction(m_dir_);
+  set_direction_(m_dir_);
 }
 
 Car::~Car()
@@ -29,39 +29,30 @@ void Car::do_action(char c)
   switch(c)
   {
     case '+':
-      set_speed_off(5);
+      set_speed_off_(5);
       break;
     case '-':
-      set_speed_off(-5);
+      set_speed_off_(-5);
       break;
     case 'U':
-      set_direction(FORWARD);
+      set_direction_(FORWARD);
       break;
     case 'D':
-      set_direction(BACKWARD);
+      set_direction_(BACKWARD);
       break;
     case 'L':
-      turn_left();
+      rotate_left_();
       break;
     case 'R':
-      turn_right();
-      break;
-    case 'T':
-      reset_turn();
-      break;
-    case 'l':
-      rotate_left();
-      break;
-    case 'r':
-      rotate_right();
+      rotate_right_();
       break;
     default:
-      set_direction(RELEASE);
+      set_direction_(RELEASE);
       break;
   }
 }
 
-void Car::set_speed(uint8_t sp)
+void Car::set_speed_(uint8_t sp)
 {
   m_sp_ = clamp(sp, min_speed_, max_speed_);
     
@@ -71,12 +62,12 @@ void Car::set_speed(uint8_t sp)
   m_motor_front_r_->setSpeed(m_sp_);
 }
 
-void Car::set_speed_off(int8_t sp)
+void Car::set_speed_off_(int8_t sp)
 {
-  set_speed(m_sp_ + sp);
+  set_speed_(m_sp_ + sp);
 }
 
-void Car::set_direction(uint8_t dir)
+void Car::set_direction_(uint8_t dir)
 {
   m_dir_ = dir;
   m_motor_back_l_->run(m_dir_);
@@ -85,43 +76,22 @@ void Car::set_direction(uint8_t dir)
   m_motor_front_r_->run(m_dir_);
 }
 
-void Car::turn_left()
+void Car::rotate_right_()
 {
-  m_motor_back_r_->setSpeed(mid_speed_);
-  m_motor_front_r_->setSpeed(mid_speed_);
-  m_motor_back_l_->setSpeed(min_speed_);
-  m_motor_front_l_->setSpeed(min_speed_);
-}
-
-void Car::turn_right()
-{
-  m_motor_back_r_->setSpeed(min_speed_);
-  m_motor_front_r_->setSpeed(min_speed_);
-  m_motor_back_l_->setSpeed(mid_speed_);
-  m_motor_front_l_->setSpeed(mid_speed_);
-}
-
-void Car::reset_turn()
-{
-  set_speed(m_sp_);
-}
-
-void Car::rotate_left()
-{
-  set_speed(min_speed_);
+  set_speed_(min_speed_);
   m_motor_back_l_->run(BACKWARD);
   m_motor_front_l_->run(BACKWARD);
   m_motor_back_r_->run(FORWARD);
   m_motor_front_r_->run(FORWARD);
-  set_speed(m_sp_);
+  set_speed_(m_sp_);
 }
 
-void Car::rotate_right()
+void Car::rotate_left_()
 {
-  set_speed(min_speed_);
+  set_speed_(min_speed_);
   m_motor_back_r_->run(BACKWARD);
   m_motor_front_r_->run(BACKWARD);
   m_motor_back_l_->run(FORWARD);
   m_motor_front_l_->run(FORWARD);
-  set_speed(m_sp_);
+  set_speed_(m_sp_);
 }

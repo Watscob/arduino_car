@@ -9,7 +9,6 @@ void setup()
     car = new Car(180, 180, 255);
 }
  
- 
 void loop() 
 {
     if (Serial1.available())
