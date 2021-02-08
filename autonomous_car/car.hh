@@ -29,6 +29,7 @@ private:
   uint8_t min_speed_;
   uint8_t mid_speed_;
   uint8_t max_speed_;
+  uint8_t save_speed_;
   
   void set_speed_(uint8_t sp);
   void set_speed_off_(int8_t sp);
@@ -37,5 +38,5 @@ private:
   void set_direction_(uint8_t dir);
   void rotate_left_();
   void rotate_right_();
-  
+  void reset_rotate_();
 };
