@@ -1,11 +1,10 @@
-#ifndef CAR_H
-#define CAR_H
+#pragma once
 
 #include <AFMotor.h>
 
 class Car
 {
-  public:
+public:
   Car(uint8_t sp);
   ~Car();
 
@@ -22,8 +21,7 @@ class Car
   void rotate_left();
   void rotate_right();
   
-  private:
-  
+private:  
   AF_DCMotor *m_motor_back_l;
   AF_DCMotor *m_motor_back_r;
   AF_DCMotor *m_motor_front_l;
@@ -31,5 +29,3 @@ class Car
   uint8_t m_sp;
   uint8_t m_dir;
 };
-
-#endif /* !CAR_H */
