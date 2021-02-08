@@ -12,5 +12,5 @@ void setup()
 void loop() 
 {
     if (Serial1.available())
-      car->do_action(Serial1.read());
+      car->do_action(Serial1.readStringUntil('\n'));
 }

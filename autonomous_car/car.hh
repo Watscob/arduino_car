@@ -1,6 +1,7 @@
 #pragma once
 
 #include <AFMotor.h>
+#include <Arduino.h>
 
 inline int clamp(int x, int x_min, int x_max)
 {
@@ -17,7 +18,7 @@ public:
   Car(uint8_t sp, uint8_t min_speed, uint8_t max_speed);
   ~Car();
 
-  void do_action(char c);
+  void do_action(String s);
   
 private:
   AF_DCMotor *m_motor_back_l_;

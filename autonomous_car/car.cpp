@@ -1,7 +1,5 @@
 #include "car.hh"
 
-#include <Arduino.h>
-
 Car::Car(uint8_t sp, uint8_t min_speed, uint8_t max_speed)
   : m_sp_(sp)
   , min_speed_(min_speed)
@@ -27,34 +25,32 @@ Car::~Car()
   delete m_motor_front_r_;
 }
 
-void Car::do_action(char c)
+void Car::do_action(String s)
 {
-  switch(c)
+  if (s[0] == '+' || s[0] == '-')
   {
-    case '+':
-      set_speed_off_(5);
-      break;
-    case '-':
-      set_speed_off_(-5);
-      break;
-    case 'U':
-      set_direction_(FORWARD);
-      break;
-    case 'D':
-      set_direction_(BACKWARD);
-      break;
-    case 'L':
-      rotate_left_();
-      break;
-    case 'R':
-      rotate_right_();
-      break;
-    case 'T':
-      reset_rotate_();
-    default:
-      set_direction_(RELEASE);
-      break;
+    uint8_t sp = s.toInt();
+    if (sp != 0)
+      set_speed_off_(sp);
   }
+  else if (s.substring(0, 5) == "SPEED")
+  {
+    uint8_t sp = s.substring(5, s.length()).toInt();
+    if (sp != 0)
+      set_speed_(sp);
+  }
+  else if (s == "GO_FORWARD")
+    set_direction_(FORWARD);
+  else if (s == "GO_BACKWARD")
+    set_direction_(BACKWARD);
+  else if (s == "ROTATE_LEFT")
+    rotate_left_();
+  else if (s == "ROTATE_RIGHT")
+    rotate_right_();
+  else if (s == "RESET_ROTATE")
+    reset_rotate_();
+  else if (s == "STOP")
+    set_direction_(RELEASE);
 }
 
 void Car::set_speed_(uint8_t sp)
