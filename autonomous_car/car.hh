@@ -15,7 +15,7 @@ inline int clamp(int x, int x_min, int x_max)
 class Car
 {
 public:
-  Car(uint8_t sp, uint8_t min_speed, uint8_t max_speed);
+  Car(uint8_t min_speed, uint8_t max_speed);
   ~Car();
 
   void do_action(String s);
@@ -30,7 +30,6 @@ private:
   uint8_t min_speed_;
   uint8_t mid_speed_;
   uint8_t max_speed_;
-  uint8_t save_speed_;
   
   void set_speed_(uint8_t sp);
   void set_speed_off_(int8_t sp);

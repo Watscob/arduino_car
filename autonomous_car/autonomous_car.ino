@@ -5,8 +5,7 @@ Car *car;
 void setup() 
 { 
     Serial1.begin(9600);
-
-    car = new Car(180, 180, 255);
+    car = new Car(150, 255);
 }
  
 void loop() 
