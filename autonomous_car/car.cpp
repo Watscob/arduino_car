@@ -91,6 +91,11 @@ void Car::handle_led_(uint8_t fl, uint8_t fr, uint8_t bl, uint8_t br)
 
 void Car::led_blink_(uint8_t slp, uint8_t nb_turn)
 {
+  uint8_t save_fl = digitalRead(led_front_left_);
+  uint8_t save_fr = digitalRead(led_front_right_);
+  uint8_t save_bl = digitalRead(led_back_left_);
+  uint8_t save_br = digitalRead(led_back_right_);
+
   while (nb_turn > 0)
   {
     handle_led_(HIGH, LOW, LOW, LOW);
@@ -104,10 +109,11 @@ void Car::led_blink_(uint8_t slp, uint8_t nb_turn)
   
     handle_led_(LOW, LOW, HIGH, LOW);
     delay(slp);
-  
-    handle_led_(LOW, LOW, LOW, LOW);
+
     nb_turn--;
   }
+
+  handle_led_(save_fl, save_fr, save_bl, save_br);
 }
 
 void Car::set_speed_(uint8_t sp)
