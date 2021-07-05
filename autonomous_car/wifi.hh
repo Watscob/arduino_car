@@ -5,7 +5,21 @@
 
 enum Request
 {
-    UNDEFINED
+    UNDEFINED,
+    SPEED_PLUS,
+    SPEED_MINUS,
+    MIN_SPEED,
+    MAX_SPEED,
+    GO_FORWARD,
+    GO_BACKWARD,
+    ROTATE_LEFT,
+    ROTATE_RIGHT,
+    STOP,
+    LIGHT_ALL,
+    LIGHT_FRONT,
+    LIGHT_BACK,
+    LIGHT_OFF,
+    LIGHT_BLINK
 };
 
 class CarWiFi 
@@ -17,7 +31,6 @@ public:
     String get_SSID();
     IPAddress get_IP();
     bool is_connected();
-    void send_response(WiFiEspClient client);
     Request recv_request();
 
 private:
@@ -26,4 +39,6 @@ private:
     int status_;
     RingBuffer buf_;
     WiFiEspServer server_;
+    
+    void send_response_(WiFiEspClient client);
 };

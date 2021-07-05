@@ -39,13 +39,6 @@ bool CarWiFi::is_connected()
     return WiFi.status() == WL_CONNECTED;
 }
 
-void CarWiFi::send_response(WiFiEspClient client)
-{
-    client.println("HTTP/1.1 200 OK");
-    client.println();
-    client.println();
-}
-
 Request CarWiFi::recv_request()
 {
     Request request = Request::UNDEFINED;
@@ -67,8 +60,34 @@ Request CarWiFi::recv_request()
                     break;
                 }
 
-                if (this->buf_.endsWith("GET /H"))
-                    request = Request::UNDEFINED;
+                if (this->buf_.endsWith("POST /speed/increase"))
+                    request = Request::SPEED_PLUS;
+                else if (this->buf_.endsWith("/speed/decrease"))
+                    request = Request::SPEED_MINUS;
+                else if (this->buf_.endsWith("POST /speed/min"))
+                    request = Request::MIN_SPEED;
+                else if (this->buf_.endsWith("POST /speed/max"))
+                    request = Request::MAX_SPEED;
+                else if (this->buf_.endsWith("POST /move/forward"))
+                    request = Request::GO_FORWARD;
+                else if (this->buf_.endsWith("POST /move/backward"))
+                    request = Request::GO_BACKWARD;
+                else if (this->buf_.endsWith("POST /move/rotate/left"))
+                    request = Request::ROTATE_LEFT;
+                else if (this->buf_.endsWith("POST /move/rotate/right"))
+                    request = Request::ROTATE_RIGHT;
+                else if (this->buf_.endsWith("POST /move/stop"))
+                    request = Request::STOP;
+                else if (this->buf_.endsWith("POST /light/all"))
+                    request = Request::LIGHT_ALL;
+                else if (this->buf_.endsWith("POST /light/front"))
+                    request = Request::LIGHT_FRONT;
+                else if (this->buf_.endsWith("POST /light/back"))
+                    request = Request::LIGHT_BACK;
+                else if (this->buf_.endsWith("POST /light/off"))
+                    request = Request::LIGHT_OFF;
+                else if (this->buf_.endsWith("POST /light/blink"))
+                    request = Request::LIGHT_BLINK;
             }
         }
 
@@ -76,4 +95,11 @@ Request CarWiFi::recv_request()
     }
 
     return request;
+}
+
+void CarWiFi::send_response_(WiFiEspClient client)
+{
+    client.println("HTTP/1.1 200 OK");
+    client.println();
+    client.println();
 }
