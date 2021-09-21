@@ -1,17 +1,14 @@
 #include "car.hh"
 
 Car::Car(uint8_t min_speed, uint8_t max_speed, 
-        uint8_t front_left, uint8_t front_right, 
-        uint8_t back_left, uint8_t back_right)
+        uint8_t front, uint8_t back)
     : m_sp_(min_speed)
     , min_speed_(min_speed)
     , max_speed_(max_speed)
     , mid_speed_(min_speed + (max_speed - min_speed) / 2)
     , m_dir_(RELEASE) 
-    , led_front_left_(front_left)
-    , led_front_right_(front_right)
-    , led_back_left_(back_left)
-    , led_back_right_(back_right)
+    , led_front_(front)
+    , led_back_(back)
 {
     m_motor_back_l_ = new AF_DCMotor(1, MOTOR12_64KHZ);
     m_motor_back_r_ = new AF_DCMotor(2, MOTOR12_64KHZ); 
@@ -20,13 +17,8 @@ Car::Car(uint8_t min_speed, uint8_t max_speed,
   
     set_direction_(m_dir_);
     set_speed_(m_sp_);
-
-    pinMode(led_front_left_, OUTPUT);
-    pinMode(led_front_right_, OUTPUT);
-    pinMode(led_back_left_, OUTPUT);
-    pinMode(led_back_right_, OUTPUT);
   
-    handle_led_(LOW, LOW, LOW, LOW);
+    handle_led_(LOW, LOW);
 }
 
 Car::~Car()
@@ -41,47 +33,47 @@ void Car::do_action(Action action)
 {
     switch(action)
     {
-        case Action::SPEED_PLUS:
+        case Action::ACTION_SPEED_PLUS:
             set_speed_off_(5);
             break;
-        case Action::SPEED_MINUS:
+        case Action::ACTION_SPEED_MINUS:
             set_speed_off_(-5);
             break;
-        case Action::MAX_SPEED:
+        case Action::ACTION_MAX_SPEED:
             set_speed_(max_speed_);
             break;
-        case Action::MIN_SPEED:
+        case Action::ACTION_MIN_SPEED:
             set_speed_(min_speed_);
             break;
-        case Action::GO_FORWARD:
+        case Action::ACTION_GO_FORWARD:
             set_direction_(FORWARD);
             break;
-        case Action::GO_BACKWARD:
+        case Action::ACTION_GO_BACKWARD:
             set_direction_(BACKWARD);
             break;
-        case Action::ROTATE_LEFT:
+        case Action::ACTION_ROTATE_LEFT:
             rotate_left_();
             break;
-        case Action::ROTATE_RIGHT:
+        case Action::ACTION_ROTATE_RIGHT:
             rotate_right_();
             break;
-        case Action::STOP:
+        case Action::ACTION_STOP:
             set_direction_(RELEASE);
             break;
-        case Action::LIGHT_ALL:
-            handle_led_(HIGH, HIGH, HIGH, HIGH);
+        case Action::ACTION_LIGHT_ALL:
+            handle_led_(HIGH, HIGH);
             break;
-        case Action::LIGHT_FRONT:
-            handle_led_(HIGH, HIGH, LOW, LOW);
+        case Action::ACTION_LIGHT_FRONT:
+            handle_led_(HIGH, LOW);
             break;
-        case Action::LIGHT_BACK:
-            handle_led_(LOW, LOW, HIGH, HIGH);
+        case Action::ACTION_LIGHT_BACK:
+            handle_led_(LOW, HIGH);
             break;
-        case Action::LIGHT_OFF:
-            handle_led_(LOW, LOW, LOW, LOW);
+        case Action::ACTION_LIGHT_OFF:
+            handle_led_(LOW, LOW);
             break;
-        case Action::LIGHT_BLINK:
-            led_blink_(100, 3);
+        case Action::ACTION_LIGHT_BLINK:
+            led_blink_(100, 8);
             break;
         default:
             set_direction_(RELEASE);
@@ -89,39 +81,29 @@ void Car::do_action(Action action)
     }
 }
 
-void Car::handle_led_(uint8_t fl, uint8_t fr, uint8_t bl, uint8_t br)
+void Car::handle_led_(uint8_t f, uint8_t b)
 {
-    digitalWrite(led_front_left_, fl);
-    digitalWrite(led_front_right_, fr);
-    digitalWrite(led_back_left_, bl);
-    digitalWrite(led_back_right_, br);
+    digitalWrite(led_front_, f);
+    digitalWrite(led_back_, b);
 }
 
 void Car::led_blink_(uint8_t slp, uint8_t nb_turn)
 {
-    uint8_t save_fl = digitalRead(led_front_left_);
-    uint8_t save_fr = digitalRead(led_front_right_);
-    uint8_t save_bl = digitalRead(led_back_left_);
-    uint8_t save_br = digitalRead(led_back_right_);
+    uint8_t save_front = digitalRead(led_front_);
+    uint8_t save_back = digitalRead(led_back_);
 
     while (nb_turn > 0)
     {
-        handle_led_(HIGH, LOW, LOW, LOW);
+        handle_led_(HIGH, HIGH);
         delay(slp);
   
-        handle_led_(LOW, HIGH, LOW, LOW);
-        delay(slp);
-  
-        handle_led_(LOW, LOW, LOW, HIGH);
-        delay(slp);
-  
-        handle_led_(LOW, LOW, HIGH, LOW);
+        handle_led_(LOW, LOW);
         delay(slp);
 
         nb_turn--;
     }
 
-    handle_led_(save_fl, save_fr, save_bl, save_br);
+    handle_led_(save_front, save_back);
 }
 
 void Car::set_speed_(uint8_t sp)

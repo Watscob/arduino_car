@@ -14,28 +14,27 @@ inline int clamp(int x, int x_min, int x_max)
 
 enum Action
 {
-    SPEED_PLUS,
-    SPEED_MINUS,
-    MIN_SPEED,
-    MAX_SPEED,
-    GO_FORWARD,
-    GO_BACKWARD,
-    ROTATE_LEFT,
-    ROTATE_RIGHT,
-    STOP,
-    LIGHT_ALL,
-    LIGHT_FRONT,
-    LIGHT_BACK,
-    LIGHT_OFF,
-    LIGHT_BLINK
+    ACTION_SPEED_PLUS,
+    ACTION_SPEED_MINUS,
+    ACTION_MIN_SPEED,
+    ACTION_MAX_SPEED,
+    ACTION_GO_FORWARD,
+    ACTION_GO_BACKWARD,
+    ACTION_ROTATE_LEFT,
+    ACTION_ROTATE_RIGHT,
+    ACTION_STOP,
+    ACTION_LIGHT_ALL,
+    ACTION_LIGHT_FRONT,
+    ACTION_LIGHT_BACK,
+    ACTION_LIGHT_OFF,
+    ACTION_LIGHT_BLINK
 };
 
 class Car
 {
 public:
     Car(uint8_t min_speed, uint8_t max_speed, 
-        uint8_t front_left, uint8_t front_right, 
-        uint8_t back_left, uint8_t back_right);
+        uint8_t front, uint8_t back);
     ~Car();
 
     void do_action(Action action);
@@ -51,12 +50,10 @@ private:
     uint8_t mid_speed_;
     uint8_t max_speed_;
 
-    uint8_t led_front_left_;
-    uint8_t led_front_right_;
-    uint8_t led_back_left_;
-    uint8_t led_back_right_;
+    uint8_t led_front_;
+    uint8_t led_back_;
 
-    void handle_led_(uint8_t fl, uint8_t fr, uint8_t bl, uint8_t br);
+    void handle_led_(uint8_t front, uint8_t back);
     void led_blink_(uint8_t slp, uint8_t nb_turn);
   
     void set_speed_(uint8_t sp);

@@ -5,27 +5,27 @@
 
 enum Request
 {
-    UNDEFINED,
-    SPEED_PLUS,
-    SPEED_MINUS,
-    MIN_SPEED,
-    MAX_SPEED,
-    GO_FORWARD,
-    GO_BACKWARD,
-    ROTATE_LEFT,
-    ROTATE_RIGHT,
-    STOP,
-    LIGHT_ALL,
-    LIGHT_FRONT,
-    LIGHT_BACK,
-    LIGHT_OFF,
-    LIGHT_BLINK
+    REQUEST_UNDEFINED,
+    REQUEST_SPEED_PLUS,
+    REQUEST_SPEED_MINUS,
+    REQUEST_MIN_SPEED,
+    REQUEST_MAX_SPEED,
+    REQUEST_GO_FORWARD,
+    REQUEST_GO_BACKWARD,
+    REQUEST_ROTATE_LEFT,
+    REQUEST_ROTATE_RIGHT,
+    REQUEST_STOP,
+    REQUEST_LIGHT_ALL,
+    REQUEST_LIGHT_FRONT,
+    REQUEST_LIGHT_BACK,
+    REQUEST_LIGHT_OFF,
+    REQUEST_LIGHT_BLINK
 };
 
 class CarWiFi 
 {
 public:
-    CarWiFi(char ssid[], char pass[]);
+    CarWiFi(char const *ssid, char const *pass);
     ~CarWiFi();
     bool connect();
     String get_SSID();
@@ -34,11 +34,11 @@ public:
     Request recv_request();
 
 private:
-    char *ssid_;
-    char *pass_;
+    char const *ssid_;
+    char const *pass_;
     int status_;
     RingBuffer buf_;
     WiFiEspServer server_;
     
-    void send_response_(WiFiEspClient client);
+    void send_response_(WiFiEspClient client, bool is_index);
 };

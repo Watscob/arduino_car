@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            * {
+                font-family: sans-serif;
+            }
+            body, html {
+                margin: 0;
+                padding: 0;
+            }
+            table, #page {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            legend {
+                font-size: x-small;
+                font-weight: normal;
+                color: grey;
+            }
+            td > form > button {
+                width: 100%;
+                height: 100%;
+            }
+            body {
+                height: 20em;
+            }
+            #page {
+                width: max-content;
+                margin-top: 50vh; /* poussé de la moitié de hauteur de viewport */
+                transform: translateY(-50%);
+            }
+        </style>
+        <script src="https://kit.fontawesome.com/52ac5a2d37.js" crossorigin="anonymous"></script>
+        <title>Arduino Car</title>
+    </head>
+    <body>
+        <div id="page">
+            <fieldset>
+                <legend>CONTROLS</legend>
+                <table>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <form id="forward" action="/move/forward" method="post" onsubmit="return false">
+                                <button type="submit" class="btn btn-default"><i class="fas fa-arrow-up"></i></button>
+                            </form>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form id="rotate_left" action="/move/rotate/left" method="post" onsubmit="return false">
+                                <button type="submit" class="btn btn-default"><i class="fas fa-arrow-left"></i></button>
+                            </form>
+                        </td>
+                        <td>
+                            <form id="stop" action="/move/stop" method="post" onsubmit="return false">
+                                <button type="submit" class="btn btn-default"><i class="fas fa-times"></i></button>
+                            </form>
+                        </td>
+                        <td>
+                            <form id="rotate_right" action="/move/rotate/right" method="post" onsubmit="return false">
+                                <button type="submit" class="btn btn-default"><i class="fas fa-arrow-right"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <form id="backward" action="/move/backward" method="post" onsubmit="return false">
+                                <button type="submit" class="btn btn-default"><i class="fas fa-arrow-down"></i></button>
+                            </form>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend>SPEED</legend>
+                <table>
+                    <tr>
+                        <td>
+                            <form id="speed_decrease" action="/speed/decrease" method="post" onsubmit="return false">
+                                <button type="submit" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                            </form>
+                        </td>
+                        <td>
+                            <form id="speed_increase" action="/speed/increase" method="post" onsubmit="return false">
+                                <button type="submit" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                            </form>
+                        </td>
+                        <td>
+                            <form id="min_speed" action="/speed/min" method="post" onsubmit="return false">
+                                <button type="submit" class="btn btn-default">MIN</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form id="max_speed" action="/speed/max" method="post" onsubmit="return false">
+                                <button type="submit" class="btn btn-default">MAX</button>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend>LIGHT</legend>
+                <table>
+                    <tr>
+                        <td>
+                            <form id="light_all" action="/light/all" method="post" onsubmit="return false">
+                                <button type="submit" class="btn btn-default">ON</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form id="light_front" action="/light/front" method="post" onsubmit="return false">
+                                <button type="submit" class="btn btn-default">FRONT</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form id="light_back" action="/light/back" method="post" onsubmit="return false">
+                                <button type="submit" class="btn btn-default">BACK</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form id="light_blink" action="/light/blink" method="post" onsubmit="return false">
+                                <button type="submit" class="btn btn-default">BLINK</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form id="light_off" action="/light/off" method="post" onsubmit="return false">
+                                <button type="submit" class="btn btn-default">OFF</button>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </div>      
+    </body>
+</html>
