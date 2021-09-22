@@ -19,6 +19,7 @@ void setup()
         while(true)
             car->do_action(Action::ACTION_LIGHT_BLINK);
 
+    car->do_action(Action::ACTION_LIGHT_READY);
     Serial.print("SSID: ");
     Serial.println(carWiFi->get_SSID());
     Serial.print("IP: ");

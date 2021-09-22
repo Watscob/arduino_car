@@ -27,7 +27,8 @@ enum Action
     ACTION_LIGHT_FRONT,
     ACTION_LIGHT_BACK,
     ACTION_LIGHT_OFF,
-    ACTION_LIGHT_BLINK
+    ACTION_LIGHT_BLINK,
+    ACTION_LIGHT_READY
 };
 
 class Car
@@ -54,7 +55,7 @@ private:
     uint8_t led_back_;
 
     void handle_led_(uint8_t front, uint8_t back);
-    void led_blink_(uint8_t slp, uint8_t nb_turn);
+    void led_blink_(unsigned long slp, uint8_t nb_turn);
   
     void set_speed_(uint8_t sp);
     void set_speed_off_(int8_t sp);

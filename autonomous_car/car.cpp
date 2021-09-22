@@ -75,6 +75,9 @@ void Car::do_action(Action action)
         case Action::ACTION_LIGHT_BLINK:
             led_blink_(100, 8);
             break;
+        case Action::ACTION_LIGHT_READY:
+            led_blink_(50, 3);
+            break;
         default:
             set_direction_(RELEASE);
             break;
@@ -87,7 +90,7 @@ void Car::handle_led_(uint8_t f, uint8_t b)
     digitalWrite(led_back_, b);
 }
 
-void Car::led_blink_(uint8_t slp, uint8_t nb_turn)
+void Car::led_blink_(unsigned long slp, uint8_t nb_turn)
 {
     uint8_t save_front = digitalRead(led_front_);
     uint8_t save_back = digitalRead(led_back_);

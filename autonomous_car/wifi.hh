@@ -3,6 +3,8 @@
 #include <Arduino.h>
 #include <WiFiEsp.h>
 
+#include "car.hh"
+
 enum Request
 {
     REQUEST_UNDEFINED,
@@ -40,5 +42,5 @@ private:
     RingBuffer buf_;
     WiFiEspServer server_;
     
-    void send_response_(WiFiEspClient client, bool is_index);
+    void send_response_(WiFiEspClient client);
 };
