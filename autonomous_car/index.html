@@ -18,7 +18,7 @@
                 font-weight: normal;
                 color: grey;
             }
-            td > form > button {
+            td >  button {
                 width: 100%;
                 height: 100%;
             }
@@ -42,35 +42,60 @@
                     <tr>
                         <td></td>
                         <td>
-                            <form id="forward" action="/move/forward" method="post" onsubmit="return false">
-                                <button type="submit" class="btn btn-default"><i class="fas fa-arrow-up"></i></button>
-                            </form>
+                            <button id="forward" class="btn btn-default"><i class="fas fa-arrow-up"></i></button>
+                            <script type="text/javascript">
+                                document.getElementById("forward").addEventListener("click", function() {
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.open('post', 'http://192.168.1.17/move/forward', true);
+                                    xhr.send();
+                                }, false);
+                            </script>
                         </td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>
-                            <form id="rotate_left" action="/move/rotate/left" method="post" onsubmit="return false">
-                                <button type="submit" class="btn btn-default"><i class="fas fa-arrow-left"></i></button>
-                            </form>
+                            <button id="rotate_left" class="btn btn-default"><i class="fas fa-arrow-left"></i></button>
+                            <script type="text/javascript">
+                                document.getElementById("rotate_left").addEventListener("click", function() {
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.open('post', 'http://192.168.1.17/move/rotate/left', true);
+                                    xhr.send();
+                                }, false);
+                            </script>
                         </td>
                         <td>
-                            <form id="stop" action="/move/stop" method="post" onsubmit="return false">
-                                <button type="submit" class="btn btn-default"><i class="fas fa-times"></i></button>
-                            </form>
+                            <button id="stop" class="btn btn-default"><i class="fas fa-times"></i></button>
+                            <script type="text/javascript">
+                                document.getElementById("stop").addEventListener("click", function() {
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.open('post', 'http://192.168.1.17/move/stop', true);
+                                    xhr.send();
+                                }, false);
+                            </script>
                         </td>
                         <td>
-                            <form id="rotate_right" action="/move/rotate/right" method="post" onsubmit="return false">
-                                <button type="submit" class="btn btn-default"><i class="fas fa-arrow-right"></i></button>
-                            </form>
+                            <button id="rotate_right" class="btn btn-default"><i class="fas fa-arrow-right"></i></button>
+                            <script type="text/javascript">
+                                document.getElementById("rotate_right").addEventListener("click", function() {
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.open('post', 'http://192.168.1.17/move/rotate/right', true);
+                                    xhr.send();
+                                }, false);
+                            </script>
                         </td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>
-                            <form id="backward" action="/move/backward" method="post" onsubmit="return false">
-                                <button type="submit" class="btn btn-default"><i class="fas fa-arrow-down"></i></button>
-                            </form>
+                            <button id="backward" class="btn btn-default"><i class="fas fa-arrow-down"></i></button>
+                            <script type="text/javascript">
+                                document.getElementById("backward").addEventListener("click", function() {
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.open('post', 'http://192.168.1.17/move/backward', true);
+                                    xhr.send();
+                                }, false);
+                            </script>
                         </td>
                         <td></td>
                     </tr>
@@ -81,24 +106,44 @@
                 <table>
                     <tr>
                         <td>
-                            <form id="speed_decrease" action="/speed/decrease" method="post" onsubmit="return false">
-                                <button type="submit" class="btn btn-default"><i class="fas fa-minus"></i></button>
-                            </form>
+                            <button id="speed_decrease" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                            <script type="text/javascript">
+                                document.getElementById("speed_decrease").addEventListener("click", function() {
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.open('post', 'http://192.168.1.17/speed/decrease', true);
+                                    xhr.send();
+                                }, false);
+                            </script>
                         </td>
                         <td>
-                            <form id="speed_increase" action="/speed/increase" method="post" onsubmit="return false">
-                                <button type="submit" class="btn btn-default"><i class="fas fa-plus"></i></button>
-                            </form>
+                            <button id="speed_increase" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                            <script type="text/javascript">
+                                document.getElementById("speed_increase").addEventListener("click", function() {
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.open('post', 'http://192.168.1.17/speed/increase', true);
+                                    xhr.send();
+                                }, false);
+                            </script>
                         </td>
                         <td>
-                            <form id="min_speed" action="/speed/min" method="post" onsubmit="return false">
-                                <button type="submit" class="btn btn-default">MIN</button>
-                            </form>
+                            <button id="min_speed" class="btn btn-default">MIN</button>
+                            <script type="text/javascript">
+                                document.getElementById("min_speed").addEventListener("click", function() {
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.open('post', 'http://192.168.1.17/speed/min', true);
+                                    xhr.send();
+                                }, false);
+                            </script>
                         </td>
                         <td>
-                            <form id="max_speed" action="/speed/max" method="post" onsubmit="return false">
-                                <button type="submit" class="btn btn-default">MAX</button>
-                            </form>
+                            <button id="max_speed" class="btn btn-default">MAX</button>
+                            <script type="text/javascript">
+                                document.getElementById("max_speed").addEventListener("click", function() {
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.open('post', 'http://192.168.1.17/speed/max', true);
+                                    xhr.send();
+                                }, false);
+                            </script>
                         </td>
                     </tr>
                 </table>
@@ -108,33 +153,59 @@
                 <table>
                     <tr>
                         <td>
-                            <form id="light_all" action="/light/all" method="post" onsubmit="return false">
-                                <button type="submit" class="btn btn-default">ON</button>
-                            </form>
+                            <button id="light_all" class="btn btn-default">ON</button>
+                            <script type="text/javascript">
+                                document.getElementById("light_all").addEventListener("click", function() {
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.open('post', 'http://192.168.1.17/light/all', true);
+                                    xhr.send();
+                                }, false);
+                            </script>
                         </td>
                         <td>
-                            <form id="light_front" action="/light/front" method="post" onsubmit="return false">
-                                <button type="submit" class="btn btn-default">FRONT</button>
-                            </form>
+                            <button id="light_front" class="btn btn-default">FRONT</button>
+                            <script type="text/javascript">
+                                document.getElementById("light_front").addEventListener("click", function() {
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.open('post', 'http://192.168.1.17/light/front', true);
+                                    xhr.send();
+                                }, false); 
+                            </script>
                         </td>
                         <td>
-                            <form id="light_back" action="/light/back" method="post" onsubmit="return false">
-                                <button type="submit" class="btn btn-default">BACK</button>
-                            </form>
+                            <button id="light_back" class="btn btn-default">BACK</button>
+                            <script type="text/javascript">
+                                document.getElementById("light_back").addEventListener("click", function() {
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.open('post', 'http://192.168.1.17/light/back', true);
+                                    xhr.send();
+                                }, false);
+                            </script>
                         </td>
                         <td>
-                            <form id="light_blink" action="/light/blink" method="post" onsubmit="return false">
-                                <button type="submit" class="btn btn-default">BLINK</button>
-                            </form>
+                            <button id="light_blink" class="btn btn-default">BLINK</button>
+                            <script type="text/javascript">
+                                document.getElementById("light_blink").addEventListener("click", function() {
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.open('post', 'http://192.168.1.17/light/blink', true);
+                                    xhr.send();
+                                }, false); 
+                            </script>
                         </td>
                         <td>
-                            <form id="light_off" action="/light/off" method="post" onsubmit="return false">
-                                <button type="submit" class="btn btn-default">OFF</button>
-                            </form>
+                            <button id="light_off" class="btn btn-default">OFF</button>
+                            <script type="text/javascript">
+                                document.getElementById("light_off").addEventListener("click", function() {
+                                    var xhr = new XMLHttpRequest();
+                                    xhr.open('post', 'http://192.168.1.17/light/off', true);
+                                    xhr.send();
+                                }, false);
+                            </script>
                         </td>
                     </tr>
                 </table>
             </fieldset>
-        </div>      
+        </div>
+        
     </body>
 </html>

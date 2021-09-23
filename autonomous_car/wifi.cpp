@@ -56,9 +56,11 @@ Request CarWiFi::recv_request()
         {
             if (client.available())
             {
-                c = client.read();
+                char c = client.read();
                 this->buf_.push(c);
                 this->buf_.getStr(buf, 0);
+                Serial.print("BUF: ");
+                Serial.println(buf);
 
                 if (this->buf_.endsWith("\r\n\r\n"))
                     break;
