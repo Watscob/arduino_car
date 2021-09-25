@@ -1,9 +1,6 @@
 #pragma once
 
 #include <Arduino.h>
-#include <WiFiEsp.h>
-
-#include "car.hh"
 
 enum Request
 {
@@ -24,23 +21,19 @@ enum Request
     REQUEST_LIGHT_BLINK
 };
 
-class CarWiFi 
+class ESPAdaptator
 {
 public:
-    CarWiFi(char const *ssid, char const *pass);
-    ~CarWiFi();
-    bool connect();
-    String get_SSID();
-    IPAddress get_IP();
+    ESPAdaptator();
+    ~ESPAdaptator();
     bool is_connected();
-    Request recv_request();
-
+    String get_SSID();
+    String get_IP();
+    Request get_request();
+    void process();
 private:
-    char const *ssid_;
-    char const *pass_;
-    int status_;
-    RingBuffer buf_;
-    WiFiEspServer server_;
-    
-    void send_response_(WiFiEspClient client);
+    bool is_connected_;
+    String SSID_;
+    String IP_;
+    Request request_;
 };

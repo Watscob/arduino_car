@@ -1,34 +1,34 @@
 #include "car.hh"
-#include "wifi.hh"
+#include "esp.hh"
 
 Car *car;
-CarWiFi *carWiFi;
-
+ESPAdaptator *esp;
 
 void setup() 
 { 
-    Serial.begin(9600);
+    Serial.begin(115200);
     uint8_t led_front = 51;
     uint8_t led_back = 49;
     pinMode(led_front, OUTPUT);
     pinMode(led_back, OUTPUT);
     car = new Car(150, 255, led_front, led_back);
-    carWiFi = new CarWiFi("Livebox-FBFC", "BonAnniv54");
+    esp = new ESPAdaptator();
 
-    if (!carWiFi->connect())
+    if (!esp->is_connected())
         while(true)
             car->do_action(Action::ACTION_LIGHT_BLINK);
 
     car->do_action(Action::ACTION_LIGHT_READY);
     Serial.print("SSID: ");
-    Serial.println(carWiFi->get_SSID());
+    Serial.println(esp->get_SSID());
     Serial.print("IP: ");
-    Serial.println(carWiFi->get_IP());
+    Serial.println(esp->get_IP());
 }
  
 void loop() 
 {
-    switch (carWiFi->recv_request())
+    esp->process();
+    switch (esp->get_request())
     {
         case Request::REQUEST_SPEED_PLUS:
             car->do_action(Action::ACTION_SPEED_PLUS);
