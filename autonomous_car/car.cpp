@@ -10,6 +10,9 @@ Car::Car(uint8_t min_speed, uint8_t max_speed,
     , led_front_(front)
     , led_back_(back)
 {
+    pinMode(led_front_, OUTPUT);
+    pinMode(led_back_, OUTPUT);
+    
     m_motor_back_l_ = new AF_DCMotor(1, MOTOR12_64KHZ);
     m_motor_back_r_ = new AF_DCMotor(2, MOTOR12_64KHZ); 
     m_motor_front_r_ = new AF_DCMotor(3, MOTOR34_64KHZ); 
@@ -76,7 +79,7 @@ void Car::do_action(Action action)
             led_blink_(100, 8);
             break;
         case Action::ACTION_LIGHT_READY:
-            led_blink_(50, 3);
+            led_blink_(50, 6);
             break;
         default:
             set_direction_(RELEASE);

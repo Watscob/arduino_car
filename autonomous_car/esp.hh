@@ -4,36 +4,31 @@
 
 enum Request
 {
-    REQUEST_UNDEFINED,
-    REQUEST_SPEED_PLUS,
-    REQUEST_SPEED_MINUS,
-    REQUEST_MIN_SPEED,
-    REQUEST_MAX_SPEED,
-    REQUEST_GO_FORWARD,
-    REQUEST_GO_BACKWARD,
-    REQUEST_ROTATE_LEFT,
-    REQUEST_ROTATE_RIGHT,
-    REQUEST_STOP,
-    REQUEST_LIGHT_ALL,
-    REQUEST_LIGHT_FRONT,
-    REQUEST_LIGHT_BACK,
-    REQUEST_LIGHT_OFF,
-    REQUEST_LIGHT_BLINK
+    REQUEST_UNDEFINED,      // 0
+    REQUEST_SPEED_PLUS,     // 1
+    REQUEST_SPEED_MINUS,    // 2
+    REQUEST_MIN_SPEED,      // 3
+    REQUEST_MAX_SPEED,      // 4
+    REQUEST_GO_FORWARD,     // 5
+    REQUEST_GO_BACKWARD,    // 6
+    REQUEST_ROTATE_LEFT,    // 7
+    REQUEST_ROTATE_RIGHT,   // 8
+    REQUEST_STOP,           // 9
+    REQUEST_LIGHT_ALL,      //10
+    REQUEST_LIGHT_FRONT,    //11
+    REQUEST_LIGHT_BACK,     //12
+    REQUEST_LIGHT_OFF,      //13
+    REQUEST_LIGHT_BLINK,    //14        
+
+    REQUEST_CONNECTED,      //15
+    REQUEST_GET_SSID,       //16
+    REQUEST_GET_IP          //17
 };
 
 class ESPAdaptator
 {
 public:
-    ESPAdaptator();
+    ESPAdaptator(long update_speed);
     ~ESPAdaptator();
-    bool is_connected();
-    String get_SSID();
-    String get_IP();
-    Request get_request();
-    void process();
-private:
-    bool is_connected_;
-    String SSID_;
-    String IP_;
-    Request request_;
+    Request read_wifi(String *arg);
 };
