@@ -137,7 +137,7 @@ void Car::set_direction_(uint8_t dir)
     m_motor_front_r_->run(m_dir_);
 }
 
-void Car::rotate_right_()
+void Car::rotate_left_()
 {
     m_motor_back_l_->run(BACKWARD);
     m_motor_front_l_->run(BACKWARD);
@@ -145,7 +145,7 @@ void Car::rotate_right_()
     m_motor_front_r_->run(FORWARD);
 }
 
-void Car::rotate_left_()
+void Car::rotate_right_()
 {  
     m_motor_back_r_->run(BACKWARD);
     m_motor_front_r_->run(BACKWARD);
