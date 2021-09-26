@@ -6,6 +6,7 @@
 #include <ESP8266WiFiMulti.h> 
 
 #include "index.hh"
+#include "credentials.hh"
 
 #define UPDATE_SPEED 115200
 
@@ -17,7 +18,8 @@ void setup() {
 
     WiFi.hostname("ArduinoCar");
 
-    wifiMulti.addAP("Livebox-FBFC", "BonAnniv54");
+    for (int i = 0; i < NB_AP; i++)
+        wifiMulti.addAP(ssid[i], password[i]);
 
     Serial.println("#CONNECTING");
     while (wifiMulti.run() != WL_CONNECTED)
